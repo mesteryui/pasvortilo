@@ -137,10 +137,10 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define the
     ("c" "Copy password"
      (lambda () (interactive)
        (pasvortilo-actions (pasvortilo-select-pass) "Copy")))
-    ("i" "Insert password"
+    ("i" "Insert (in buffer) password"
      (lambda () (interactive)
        (pasvortilo-actions (pasvortilo-select-pass) "Insert")))
-    ("n" "Create and store a new password"
+    ("n" "Insert and store a new password"
      (lambda () (interactive)
        (pasvortilo-create-new-pass)))
     ("r" "Remove password"
