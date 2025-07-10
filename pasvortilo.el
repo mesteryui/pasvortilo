@@ -2,7 +2,7 @@
 
 ;; Author: Oscar
 ;; Version: 1.0
-;; Package-Requires: transient
+;; Package-Requires:  ((emacs "26.1") (transient "0.3.0"))
 ;; Homepage: homepage
 ;; Keywords: password_manager
 
