@@ -27,7 +27,7 @@
 
 ;;; Code:
 
-(require 'transient)
+(eval-when-compile (require 'transient))
 
 (defgroup pasvortilo nil
   "Password manager using 'pass' or 'gopass' as backend."
@@ -52,7 +52,7 @@
 
 (defun pasvortilo-actions (password &optional act)
   "Actions to do with PASSWORD is possible to use ACT to use an action given by parameter."
-  (let ((action (or act (completing-read "Accion: " '("Copy" "Insert" "Generate")))))
+  (let ((action (or act (completing-read "Accion: " '("Copy" "Insert")))))
   (pcase action
     ("Copy" (pasvortilo-copy-pass password))
     ("Insert" (pasvortilo-insert-pass password))
