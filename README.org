@@ -1,2 +1,10 @@
 * Pasvortilo: Emacs password management
-This is a password manager for Emacs
+This is a password manager for Emacs that uses ~pass~ or ~gopass~ as backend allow to create new password entries, remove existing entries, also you can obtain existing passwords and copy or insert them
+
+** TODO Generation of passwords
+It can generate passwords for the entries you want automatically
+
+
+
+* Notes
+The name pasvortilo comes from Esperanto where pasvorto is word and -ilo is used to talk about tools
