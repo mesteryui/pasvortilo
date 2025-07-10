@@ -45,7 +45,10 @@
 "Obtain the password of a SERVICE available in pass."
 (string-trim (shell-command-to-string (format "%s show %s" pasvortilo-password-manager service))))
 
-
+(defun pasvortilo-insert-pass (pass)
+  "Insert password in a buffer PASS is the password to insert."
+  (insert pass)
+  (message "Password inserted successfully"))
 
 (defun pasvortilo-actions (password &optional act)
   "Actions to do with PASSWORD is possible to use ACT to use an action given by parameter."
@@ -154,6 +157,8 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define the
 "Copy a PASSWORD."
 (kill-new password)
 (message "Contraseña copiada con exito"))
+
+
 
 (defun pasvortilo-about ()
 "Tell about pasvortilo in minibuffer."
