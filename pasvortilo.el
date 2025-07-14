@@ -61,7 +61,8 @@
 
 (defun pasvortilo-generate-pass (&optional service length symbols?)
   "Generate and store a password using 'pass' or 'gopass' directly.
-Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define these things that are needed to generate the password but if you don't put it the program ask"
+Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define
+these things that are needed to generate the password but if you don't put it the program ask"
   (interactive)
   (let* ((entry (or service
                     (read-string "Enter password entry name: ")))
@@ -71,7 +72,7 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define the
                           (y-or-n-p "Include special symbols? ")
                         symbols?))
          (cmd (cond
-               ;; gopass has a native `generate` command
+               ;; gopass has a native 'generate' command
                ((string= pasvortilo-password-manager "gopass")
                 (format "%s generate -f %s %d %s"
                         pasvortilo-password-manager
@@ -79,7 +80,7 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define the
                         len
                         (if use-symbols "--symbols=true" "")))
                
-               ;; pass delegates generation to pwgen internally via `pass generate`
+               ;; pass delegates generation to pwgen internally via 'pass generate'
                ((string= pasvortilo-password-manager "pass")
                 (format "%s generate -f %s %d %s"
                         pasvortilo-password-manager
