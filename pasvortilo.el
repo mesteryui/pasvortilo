@@ -36,6 +36,7 @@
 (declare-function transient-prefix "transient" (&rest args))
 (declare-function transient--suffix-only "transient" (&rest args))
 (declare-function transient--set-layout "transient" (&rest args))
+(declare-function ansi-color-filter-apply "ansi-color" (string))
 
 
 (defgroup pasvortilo nil
