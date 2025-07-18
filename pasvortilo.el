@@ -140,10 +140,13 @@ these things that are needed to generate the password but if you don't put it th
 	     password-entry)))
 
 (defun pasvortilo-select-pass (&optional service)
-  "Select password entry, You can also use SERVICE to give the service manually."
-  (let* ((password-entry (or (pasvortilo-select-service) service)))
-	 (when password-entry
-	     (pasvortilo-obtain-password password-entry))))
+  "Select password entry.
+If you want to select a password of a service in Emacs Lisp I recommend use this function with optional parameter SERVICE and not 'pasvortilo-obtain-password'
+because this function has a good error treatment."
+  (let* ((password-entry (or service (pasvortilo-select-service))))
+    (if password-entry
+	(pasvortilo-obtain-password password-entry))
+    (error "There isn't a password of that style.")))
 
 (transient-define-prefix pasvortilo-menu ()
   "Custom menu to do actions in Pasvortilo."
