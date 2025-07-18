@@ -143,7 +143,7 @@ these things that are needed to generate the password but if you don't put it th
 	     password-entry)))
 
 (defun pasvortilo-select-pass (&optional service)
-  "Select password entry. and obtain the password from that."
+  "Select password entry. and obtain the password from that. if you execute from another context of waited you can use SERVICE to define the service"
   (let* ((password-entry (or service (pasvortilo-select-service))))
     (when password-entry
       (pasvortilo-obtain-password password-entry))))
