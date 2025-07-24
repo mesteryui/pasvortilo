@@ -83,8 +83,7 @@
 
 (defun pasvortilo-generate-pass (&optional service length symbols?)
   "Generate and store a password using 'pass' or 'gopass' directly.
-Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define
-these things that are needed to generate the password but if you don't put it the program ask"
+Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define data without ask"
   (interactive)
   (let* ((entry (or service
                     (read-string "Enter password entry name: ")))
