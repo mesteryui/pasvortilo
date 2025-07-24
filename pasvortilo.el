@@ -63,7 +63,7 @@
   "Macro to define a simple action as copy or insert a password that is defined as an ACT."
   (let* ((actb (if (eq act 'copy) 'kill-new act)) (mes (if (eq act 'copy) `(message "Password copied successfully") `(message "Password %sed successfully" ,(symbol-name act)))))
     `(defun ,(intern (format "pasvortilo-%s-pass" (symbol-name act))) (password)
-       ,(format "%s%s the PASSWORD in an easy way that also gives feedback about completion if it works." (capitalize (symbol-name act)) (if (eq act 'insert) " in a new buffer" ""))
+       ,(format "%s%s the PASSWORD in an easy way giving feedback." (capitalize (symbol-name act)) (if (eq act 'insert) " in a new buffer" ""))
        (if password
 	   (progn (,actb password)
 		  ,mes)
