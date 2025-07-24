@@ -47,7 +47,7 @@
   :version "1.0")
 
 (defcustom pasvortilo-password-manager "pass"
-  "Password manager to use between gopass and pass."
+  "Password manager to use between \'gopass' and \'pass'."
   :type '(choice (const :tag "Pass (Classic)" "pass")
                  (const :tag "Gopass (Modern)" "gopass"))
   :group 'pasvortilo)
@@ -152,7 +152,8 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define dat
 
 (defun pasvortilo-select-pass (&optional service)
   "Select password entry.
-Obtain the password from that.if you execute from another context of waited you can use SERVICE to define the service."
+Obtain the password from that.
+If you execute from another context of waited you can use SERVICE to define the service."
   (let* ((password-entry (or service (pasvortilo-select-service))))
     (when password-entry
       (pasvortilo-obtain-password password-entry))))
@@ -179,7 +180,7 @@ Obtain the password from that.if you execute from another context of waited you 
 
 (defun pasvortilo-create-new-pass (&optional service password)
   "Create a new password entry using the SERVICE and PASSWORD specified.
-If they aren't given by user the function request it."
+If they aren't given by user the function request them."
   (interactive)
   (let* ((service (or service (read-string "Insert the service you want a password for: ")))
          (pass (or password (read-passwd "Insert the password: ")))
