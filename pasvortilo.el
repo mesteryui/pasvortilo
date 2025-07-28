@@ -40,14 +40,14 @@
 
 
 (defgroup pasvortilo nil
-  "Password manager using \'pass' or \'gopass' as backend."
+  "Password manager using `pass' or `gopass' as backend."
   :group 'applications
   :prefix "pasvortilo-"
   :link '(url-link :tag "Website" "https://codeberg.org/mester/pasvortilo")
-  :version "1.0")
+  :version "1.0")'
 
 (defcustom pasvortilo-password-manager "pass"
-  "Password manager to use between \'gopass' and \'pass'."
+  "Password manager to use between `gopass' and `pass'."
   :type '(choice (const :tag "Pass (Classic)" "pass")
                  (const :tag "Gopass (Modern)" "gopass"))
   :group 'pasvortilo)
@@ -82,8 +82,8 @@
       ("Create" (pasvortilo-create-new-pass password)))))
 
 (defun pasvortilo-generate-pass (&optional service length symbols?)
-  "Generate and store a password using \'pass' or \'gopass' directly.
-Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define data without ask"
+  "Generate and store a password.
+Optional SERVICE, LENGTH, and SYMBOLS? arguments control the generation."
   (interactive)
   (let* ((entry (or service
                     (read-string "Enter password entry name: ")))
@@ -118,7 +118,7 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define dat
       (message "Operation cancelled."))))
 
 (defun pasvortilo-pass-remove (&optional service)
-  "Delete a password of password manager you can use SERVICE as a parameter to tell what service you want to delete."
+  "Delete a password for SERVICE.If SERVICE is nil, prompt the user."
   (let* ((serv (or service (pasvortilo-select-service)))
          (conf (yes-or-no-p (format "Do you want to remove the password for %s? " serv))))
     (if conf
@@ -126,8 +126,9 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define dat
           (shell-command (format "%s rm -f %s" pasvortilo-password-manager serv))
           (message "Password for %s deleted." serv))
       (message "Deletion canceled."))))
+
 (defun pasvortilo-clean-entries (entries)
-  "Return a list of ENTRIES for \'pass' or \'gopass' password manager in a format that works in Emacs."
+  "Clean ENTRIES output from `pass ls' or `gopass ls' to usable list."
   (let* ((lines (split-string entries "\n" t))
          (path-stack '())
          (entries '()))
@@ -144,16 +145,14 @@ Using the optional parameters SERVICE, LENGTH SYMBOLS? is possible to define dat
     (reverse entries)))
 
 (defun pasvortilo-select-service ()
-  "Select the service of a password."
+  "Prompt user to select a password entry."
   (let* ((password-entries (pasvortilo-clean-entries (ansi-color-filter-apply (shell-command-to-string (format "%s ls" pasvortilo-password-manager)))))
 	 (password-entry (string-trim (completing-read "Password entry: " password-entries nil t))))
     (when password-entry
       password-entry)))
 
 (defun pasvortilo-select-pass (&optional service)
-  "Select password entry.
-Obtain the password from that.
-If you execute from another context of waited you can use SERVICE to define the service."
+  "Select password entry.and obtain the password only if you have selected a SERVICE using the arg or in another way."
   (let* ((password-entry (or service (pasvortilo-select-service))))
     (when password-entry
       (pasvortilo-obtain-password password-entry))))
@@ -190,11 +189,9 @@ If they aren't given by user the function request them."
     (process-send-eof proc)
     (set-process-sentinel
      proc
-     (lambda (p event)
+     (lambda (_ event)
        (when (string= event "finished\n")
          (message "Contraseña para %s guardada exitosamente." service))))))
-
-
 
 (defun pasvortilo-about ()
   "Tell about pasvortilo in minibuffer."
