@@ -3,6 +3,11 @@ This is a password manager for Emacs that uses ~pass~ or ~gopass~ as backend all
 
 If you like this little package please give me any suggestion, you have using an issue, or if you want implementing a functionality using a pull request
 
+* Features
+- Provides a simple keyboard interface to do actions with passwords using transient
+- Functions to generate a new pass and save it, create it and more
+- Use pass or gopass but for simple tasks doesn't allow to use functionality in a more deep level, but if you have one or another and want to use it work well
+- It's an interface that allow you to interact with these terminal programs from Emacs
 
 * Notes
 The name pasvortilo comes from Esperanto where pasvorto is word and -ilo is used to talk about tools
