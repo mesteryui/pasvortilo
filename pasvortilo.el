@@ -60,7 +60,8 @@
       pass)))
 
 (defmacro pasvortilo-acts-with-pass (act)
-  "Macro to define a simple action as copy or insert a password that is defined as an ACT."
+  "Macro to define a simple action.
+An action that is defined as an ACT."
   (let* ((actb (if (eq act 'copy) 'kill-new act)) (mes (if (eq act 'copy) `(message "Password copied successfully") `(message "Password %sed successfully" ,(symbol-name act)))))
     `(defun ,(intern (format "pasvortilo-%s-pass" (symbol-name act))) (password)
        ,(format "%s%s the PASSWORD in an easy way giving feedback." (capitalize (symbol-name act)) (if (eq act 'insert) " in a new buffer" ""))
@@ -71,7 +72,6 @@
 
 (pasvortilo-acts-with-pass insert)
 (pasvortilo-acts-with-pass copy)
-
 
 (defun pasvortilo-actions (password &optional act)
   "Actions to do with PASSWORD is possible to use ACT to use an action given by parameter."
@@ -152,7 +152,8 @@ Optional SERVICE, LENGTH, and SYMBOLS? arguments control the generation."
       password-entry)))
 
 (defun pasvortilo-select-pass (&optional service)
-  "Select password entry.and obtain the password only if you have selected a SERVICE using the arg or in another way."
+  "Select password entry.and obtain the password.
+Only if you have selected a SERVICE."
   (let* ((password-entry (or service (pasvortilo-select-service))))
     (when password-entry
       (pasvortilo-obtain-password password-entry))))
